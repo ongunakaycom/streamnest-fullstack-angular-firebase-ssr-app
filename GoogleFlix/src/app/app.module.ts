@@ -26,6 +26,6 @@ import { routes } from './app.routes';
     RegisterComponent, // Import standalone component
     VideoPlayerComponent // Import standalone component
   ],
-  providers: []
+  providers: [],
 })
 export class AppModule { }

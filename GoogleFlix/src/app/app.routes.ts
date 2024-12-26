@@ -5,8 +5,8 @@ import { RegisterComponent } from './register/register.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent }, // Default route
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'video-player', component: VideoPlayerComponent }
+  { path: 'video', component: VideoPlayerComponent }
 ];
