@@ -1,0 +1,22 @@
+[debug] [2024-12-26T17:27:08.964Z] ----------------------------------------------------------------------
+[debug] [2024-12-26T17:27:08.986Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\info\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2024-12-26T17:27:08.987Z] CLI Version:   13.29.1
+[debug] [2024-12-26T17:27:08.987Z] Platform:      win32
+[debug] [2024-12-26T17:27:08.987Z] Node Version:  v22.12.0
+[debug] [2024-12-26T17:27:08.988Z] Time:          Thu Dec 26 2024 20:27:08 GMT+0300 (GMT+03:00)
+[debug] [2024-12-26T17:27:08.988Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-12-26T17:27:08.997Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-12-26T17:27:09.151Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-12-26T17:27:09.152Z] > authorizing via signed-in user (info@ongunakay.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\GitHub\GoogleFlix\GoogleFlix
+
