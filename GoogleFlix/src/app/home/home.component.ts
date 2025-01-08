@@ -1,33 +1,32 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    MatToolbarModule,
-    MatButtonModule,
-    CommonModule
-  ],
+  imports: [MatToolbarModule, MatButtonModule, MatCardModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  sections: any[] = [
+  sections = [
     {
-      title: 'Trending Now',
+      title: 'Popular on GoogleFlix',
       items: [
-        { title: 'Movie 1', image: 'assets/movie1.jpg' },
-        { title: 'Movie 2', image: 'assets/movie2.jpg' }
+        { title: 'Movie 1', image: '' },
+        { title: 'Movie 2', image: '' },
+        { title: 'Movie 3', image: '' }
       ]
     },
     {
-      title: 'Top Picks for You',
+      title: 'Trending Now',
       items: [
-        { title: 'Movie 3', image: 'assets/movie3.jpg' },
-        { title: 'Movie 4', image: 'assets/movie4.jpg' }
+        { title: 'Show 1', image: '' },
+        { title: 'Show 2', image: '' },
+        { title: 'Show 3', image: '' }
       ]
     }
   ];

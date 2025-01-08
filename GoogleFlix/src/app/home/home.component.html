@@ -1,27 +1,18 @@
 <mat-toolbar color="primary" class="nav-bar">
-    <span>GoogleFlix</span>
-    <span class="spacer"></span>
-    <button mat-button>Home</button>
-    <button mat-button>TV Shows</button>
-    <button mat-button>Movies</button>
-    <button mat-button>My List</button>
-  </mat-toolbar>
-  
-  <div class="hero">
-    <img src="assets/hero-image.jpg" alt="Hero Image">
-    <div class="hero-content">
-      <h1>Featured Movies</h1>
-      <button mat-raised-button color="accent">Play</button>
-      <button mat-raised-button>More Info</button>
+  <span>GoogleFlix</span>
+  <span class="spacer"></span>
+  <button mat-button>Home</button>
+  <button mat-button>TV Shows</button>
+  <button mat-button>Movies</button>
+  <button mat-button>My List</button>
+</mat-toolbar>
+
+<div class="content-section" *ngFor="let section of sections">
+  <h2>{{ section.title }}</h2>
+  <div class="content-row">
+    <div class="content-item" *ngFor="let item of section.items">
+      <img [src]="'https://placehold.co/150x150'" alt="{{ item.title }}">
+      <p>{{ item.title }}</p>
     </div>
   </div>
-  
-  <div class="content-section" *ngFor="let section of sections">
-    <h2>{{ section.title }}</h2>
-    <div class="content-row">
-      <div class="content-item" *ngFor="let item of section.items">
-        <img [src]="item.image" alt="{{ item.title }}">
-        <p>{{ item.title }}</p>
-      </div>
-    </div>
-  </div>
+</div>
