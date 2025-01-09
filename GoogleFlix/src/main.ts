@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { provideHttpClient, withFetch } from '@angular/common/http'; // Import provideHttpClient and withFetch
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +12,7 @@ import { routes } from './app/app.routes';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withFetch()), // Enable fetch API
+    provideHttpClient(withFetch()), // Make sure `withFetch()` is added here
     importProvidersFrom(
       BrowserAnimationsModule,
       MatToolbarModule,
@@ -20,5 +20,4 @@ bootstrapApplication(AppComponent, {
       MatCardModule
     )
   ]
-})
-.catch(err => console.error(err));
+}).catch(err => console.error(err));

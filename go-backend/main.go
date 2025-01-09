@@ -6,6 +6,9 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+
+	"github.com/rs/cors"
 )
 
 type Movie struct {
@@ -18,37 +21,41 @@ type Movie struct {
 	Poster   string `json:"Poster"`
 }
 
-const apiKey = "2261744f"
-
-// Fetch movies from OMDb API
-func fetchMovies(title string) (*Movie, error) {
-	url := fmt.Sprintf("https://www.omdbapi.com/?t=%s&apikey=%s", title, apiKey)
+func fetchMovies(imdbID string, apiKey string) (*Movie, error) {
+	url := fmt.Sprintf("https://www.omdbapi.com/?i=%s&apikey=%s", imdbID, apiKey)
 	resp, err := http.Get(url)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to fetch data: %v", err)
 	}
 	defer resp.Body.Close()
 
-	// Read the response body
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 
-	// Parse the JSON response into the Movie struct
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response body: %v", err)
+	}
+
 	var movie Movie
 	if err := json.Unmarshal(body, &movie); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to unmarshal JSON: %v", err)
 	}
 
 	return &movie, nil
 }
 
 func getMovies(w http.ResponseWriter, r *http.Request) {
-	// Example: Fetching data for the movie "Inception"
-	movie, err := fetchMovies("Inception")
+	apiKey := os.Getenv("OMDB_API_KEY")
+	if apiKey == "" {
+		http.Error(w, "API key is not set", http.StatusInternalServerError)
+		return
+	}
+
+	movie, err := fetchMovies("tt3896198", apiKey)
 	if err != nil {
-		http.Error(w, "Failed to fetch movie data", http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Failed to fetch movie data: %v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -57,9 +64,21 @@ func getMovies(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/movies", getMovies)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8081"
+	}
 
-	port := "8081" // Change this to 8081 or your preferred port
+	mux := http.NewServeMux()
+	mux.HandleFunc("/movies", getMovies)
+
+	// Serve static files from the "dist" directory
+	fs := http.FileServer(http.Dir("./dist"))
+	mux.Handle("/", fs)
+
+	// Enable CORS
+	handler := cors.Default().Handler(mux)
+
 	log.Printf("Server running on port %s\n", port)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }

@@ -21,37 +21,30 @@ import { MovieService } from '../movie.service'; // Correct path
   providers: [MovieService] // Ensure MovieService is provided
 })
 export class HomeComponent implements OnInit {
-  sections = [
+  sections: any[] = [
     {
       title: 'Popular on NetFlix',
-      items: [
-        { title: 'Movie 1', image: '' },
-        { title: 'Movie 2', image: '' },
-        { title: 'Movie 3', image: '' },
-        { title: 'Movie 4', image: '' },
-        { title: 'Movie 5', image: '' },
-        { title: 'Movie 6', image: '' }
-      ]
+      items: []
     },
     {
       title: 'Trending Now',
-      items: [
-        { title: 'Show 1', image: '' },
-        { title: 'Show 2', image: '' },
-        { title: 'Show 3', image: '' },
-        { title: 'Show 4', image: '' },
-        { title: 'Show 5', image: '' },
-        { title: 'Show 6', image: '' }
-      ]
+      items: []
     }
   ];
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    this.movieService.getMovie().subscribe((movie: any) => { // Explicitly type the parameter
-      console.log(movie);
-      // You can now use the movie data to update your sections
-    });
+    this.movieService.getMovies().subscribe( // Ensure method name matches the service
+      (movies: any) => {
+        console.log('Movies fetched:', movies);
+        // Assuming movie data is an array
+        this.sections[0].items = movies; // Populate with movies
+        this.sections[1].items = movies; // Populate with movies
+      },
+      (error) => {
+        console.error('Error fetching movies:', error);
+      }
+    );
   }
 }
