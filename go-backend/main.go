@@ -23,6 +23,8 @@ type Movie struct {
 
 func fetchMovies(imdbID string, apiKey string) (*Movie, error) {
 	url := fmt.Sprintf("https://www.omdbapi.com/?i=%s&apikey=%s", imdbID, apiKey)
+	log.Printf("Fetching URL: %s\n", url)
+
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch data: %v", err)
@@ -38,29 +40,43 @@ func fetchMovies(imdbID string, apiKey string) (*Movie, error) {
 		return nil, fmt.Errorf("failed to read response body: %v", err)
 	}
 
+	log.Printf("Response Body: %s\n", string(body))
+
 	var movie Movie
 	if err := json.Unmarshal(body, &movie); err != nil {
 		return nil, fmt.Errorf("failed to unmarshal JSON: %v", err)
 	}
+
+	log.Printf("Parsed Movie: %+v\n", movie)
 
 	return &movie, nil
 }
 
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	apiKey := os.Getenv("OMDB_API_KEY")
+	log.Printf("API Key: %s\n", apiKey) // Log the API Key for verification
 	if apiKey == "" {
+		log.Println("API key is not set")
 		http.Error(w, "API key is not set", http.StatusInternalServerError)
 		return
 	}
 
 	movie, err := fetchMovies("tt3896198", apiKey)
 	if err != nil {
+		log.Printf("Failed to fetch movie data: %v\n", err)
 		http.Error(w, fmt.Sprintf("Failed to fetch movie data: %v", err), http.StatusInternalServerError)
 		return
 	}
 
+	// Wrap the movie in an array
+	movies := []Movie{*movie}
+
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(movie)
+	if err := json.NewEncoder(w).Encode(movies); err != nil {
+		log.Printf("Failed to encode movie data: %v\n", err)
+		http.Error(w, fmt.Sprintf("Failed to encode movie data: %v", err), http.StatusInternalServerError)
+		return
+	}
 }
 
 func main() {

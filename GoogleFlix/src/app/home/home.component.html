@@ -11,9 +11,14 @@
   <h2>{{ section.title }}</h2>
   <div class="content-row">
     <div class="content-item" *ngFor="let item of section.items">
-      <img [src]="item.Poster || 'https://placehold.co/150x150'" alt="{{ item.Title }}">
-      <p>{{ item.Title }}</p>
-      <p>{{ item.Plot }}</p>
+      <mat-card>
+        <mat-card-title>{{ item.Title }}</mat-card-title>
+        <mat-card-subtitle>{{ item.Year }}</mat-card-subtitle>
+        <img mat-card-image [src]="item.Poster || 'https://placehold.co/150x150'" alt="{{ item.Title }}">
+        <mat-card-content>
+          <p>{{ item.Plot }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
