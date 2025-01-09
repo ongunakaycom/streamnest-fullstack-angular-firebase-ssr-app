@@ -1,19 +1,24 @@
-import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-
 import { AppComponent } from './app/app.component';
-import { environment } from './environments/environment';
-import { routes } from './app/app.routes'; // Correct the import here
+import { provideHttpClient, withFetch } from '@angular/common/http'; // Import provideHttpClient and withFetch
 import { provideRouter } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
-
-if (environment.production) {
-  enableProdMode();
-}
+import { importProvidersFrom } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { routes } from './app/app.routes';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(routes), // Use 'routes' here
-    provideAnimations(),
-  ],
-}).catch(err => console.error(err));
+    provideRouter(routes),
+    provideHttpClient(withFetch()), // Enable fetch API
+    importProvidersFrom(
+      BrowserAnimationsModule,
+      MatToolbarModule,
+      MatButtonModule,
+      MatCardModule
+    )
+  ]
+})
+.catch(err => console.error(err));
