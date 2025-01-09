@@ -35,16 +35,25 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    this.movieService.getMovies().subscribe( // Ensure method name matches the service
+    this.movieService.getMovies().subscribe(
       (movies: any) => {
         console.log('Movies fetched:', movies);
-        // Assuming movie data is an array
-        this.sections[0].items = movies; // Populate with movies
-        this.sections[1].items = movies; // Populate with movies
+        
+        // Ensure each section has exactly 6 movies
+        this.sections[0].items = this.getSixMovies(movies);
+        this.sections[1].items = this.getSixMovies(movies);
       },
       (error) => {
         console.error('Error fetching movies:', error);
       }
     );
+  }
+
+  getSixMovies(movies: any[]): any[] {
+    const result = [];
+    for (let i = 0; i < 6; i++) {
+      result.push(movies[i % movies.length]);
+    }
+    return result;
   }
 }
