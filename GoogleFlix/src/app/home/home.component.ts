@@ -18,7 +18,10 @@ export class HomeComponent {
       items: [
         { title: 'Movie 1', image: '' },
         { title: 'Movie 2', image: '' },
-        { title: 'Movie 3', image: '' }
+        { title: 'Movie 3', image: '' },
+        { title: 'Movie 4', image: '' },
+        { title: 'Movie 5', image: '' },
+        { title: 'Movie 6', image: '' }
       ]
     },
     {
@@ -26,8 +29,11 @@ export class HomeComponent {
       items: [
         { title: 'Show 1', image: '' },
         { title: 'Show 2', image: '' },
-        { title: 'Show 3', image: '' }
+        { title: 'Show 3', image: '' },
+        { title: 'Show 4', image: '' },
+        { title: 'Show 5', image: '' },
+        { title: 'Show 6', image: '' }
       ]
     }
-  ];
+  ];  
 }
