@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent {
   sections = [
     {
-      title: 'Popular on GoogleFlix',
+      title: 'Popular on NetFlix',
       items: [
         { title: 'Movie 1', image: '' },
         { title: 'Movie 2', image: '' },
