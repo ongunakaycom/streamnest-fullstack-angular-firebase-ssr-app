@@ -47,20 +47,23 @@ export class HomeComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching movies:', error);
-
-        // Handle specific error scenarios
-        if (error.status === 0) {
-          console.error('Network error: API is unreachable.');
-        } else if (error.status >= 400 && error.status < 500) {
-          console.error('Client error:', error.message);
-        } else if (error.status >= 500) {
-          console.error('Server error:', error.message);
-        } else {
-          console.error('Unexpected error:', error.message);
+        switch (error.status) {
+          case 0:
+            alert('Network error: Unable to reach the API.');
+            break;
+          case 404:
+            alert('No movies found for the given query.');
+            break;
+          case 500:
+            alert('Server error: Please try again later.');
+            break;
+          default:
+            alert('An unexpected error occurred.');
         }
       }
     });
   }
+  
 
   getSixMovies(movies: any[]): any[] {
     return movies.slice(0, 6); // Simplified slicing logic
