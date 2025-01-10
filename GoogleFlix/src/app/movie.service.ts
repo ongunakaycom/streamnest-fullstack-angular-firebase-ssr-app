@@ -11,7 +11,8 @@ export class MovieService {
   constructor(private http: HttpClient) {}
 
   getMovies(query: string): Observable<any> {
-    const url = `${this.baseUrl}?query=${query}`;
+    const url = `https://google-flix-backend.vercel.app/api/movies?query=${query}`;
     return this.http.get<any>(url);
   }
+  
 }
