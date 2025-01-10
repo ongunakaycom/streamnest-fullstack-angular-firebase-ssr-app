@@ -23,7 +23,7 @@ import { MovieService } from '../movie.service';
 export class HomeComponent implements OnInit {
   sections: any[] = [
     {
-      title: 'Popular on NetFlix',
+      title: 'Popular on Netflix',
       items: []
     },
     {
