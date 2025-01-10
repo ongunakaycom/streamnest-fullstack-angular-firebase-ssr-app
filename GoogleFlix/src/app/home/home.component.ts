@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MovieService } from '../movie.service'; // Ensure the path is correct
+import { MovieService } from '../movie.service';
 
 @Component({
   selector: 'app-home',
@@ -49,6 +49,17 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching movies:', error);
+
+        // Handle specific error scenarios
+        if (error.status === 0) {
+          console.error('Network error: API is unreachable.');
+        } else if (error.status >= 400 && error.status < 500) {
+          console.error('Client error:', error.message);
+        } else if (error.status >= 500) {
+          console.error('Server error:', error.message);
+        } else {
+          console.error('Unexpected error:', error.message);
+        }
       }
     );
   }
