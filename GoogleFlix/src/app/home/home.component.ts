@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { MovieService } from '../movie.service'; // Correct path
+import { MovieService } from '../movie.service'; // Ensure the path is correct
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ import { MovieService } from '../movie.service'; // Correct path
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [MovieService] // Ensure MovieService is provided
+  providers: [MovieService]
 })
 export class HomeComponent implements OnInit {
   sections: any[] = [
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
     this.movieService.getMovies().subscribe(
       (movies: any) => {
         console.log('Movies fetched:', movies);
-        
+
         // Ensure each section has exactly 6 movies
         this.sections[0].items = this.getSixMovies(movies);
         this.sections[1].items = this.getSixMovies(movies);
@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
 
   getSixMovies(movies: any[]): any[] {
     const result = [];
-    for (let i = 0; i < 6; i++) {
-      result.push(movies[i % movies.length]);
+    for (let i = 0; i < Math.min(6, movies.length); i++) {
+      result.push(movies[i]);
     }
     return result;
   }
