@@ -35,7 +35,11 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    this.movieService.getMovies().subscribe(
+    this.fetchMovies('avengers'); // Example query, you can change this to other queries
+  }
+
+  fetchMovies(query: string) {
+    this.movieService.getMovies(query).subscribe(
       (movies: any) => {
         console.log('Movies fetched:', movies);
 
