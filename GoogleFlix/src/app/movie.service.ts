@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class MovieService {
-  private baseUrl = 'https://google-flix-backend.vercel.app/api/movies';
 
   constructor(private http: HttpClient) {}
 
@@ -14,5 +13,4 @@ export class MovieService {
     const url = `https://google-flix-backend.vercel.app/api/movies?query=${query}`;
     return this.http.get<any>(url);
   }
-  
 }

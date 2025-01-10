@@ -42,8 +42,6 @@ export class HomeComponent implements OnInit {
     this.movieService.getMovies(query).subscribe(
       (movies: any) => {
         console.log('Movies fetched:', movies);
-
-        // Ensure each section has exactly 6 movies
         this.sections[0].items = this.getSixMovies(movies);
         this.sections[1].items = this.getSixMovies(movies);
       },
