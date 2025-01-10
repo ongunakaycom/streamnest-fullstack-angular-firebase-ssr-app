@@ -39,15 +39,15 @@ export class HomeComponent implements OnInit {
   }
 
   fetchMovies(query: string) {
-    this.movieService.getMovies(query).subscribe(
-      (movies: any) => {
+    this.movieService.getMovies(query).subscribe({
+      next: (movies: any) => {
         console.log('Movies fetched:', movies);
         this.sections[0].items = this.getSixMovies(movies);
         this.sections[1].items = this.getSixMovies(movies);
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching movies:', error);
-
+  
         // Handle specific error scenarios
         if (error.status === 0) {
           console.error('Network error: API is unreachable.');
@@ -59,9 +59,9 @@ export class HomeComponent implements OnInit {
           console.error('Unexpected error:', error.message);
         }
       }
-    );
+    });
   }
-
+  
   getSixMovies(movies: any[]): any[] {
     const result = [];
     for (let i = 0; i < Math.min(6, movies.length); i++) {
