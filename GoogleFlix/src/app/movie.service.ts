@@ -13,4 +13,5 @@ export class MovieService {
     const url = `https://google-flix-backend.vercel.app/api/movies?query=${query}`;
     return this.http.get<any>(url);
   }
+  
 }
