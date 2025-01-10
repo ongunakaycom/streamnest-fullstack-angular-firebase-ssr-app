@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    this.fetchMovies('avengers'); // Example query, you can change this to other queries
+    this.fetchMovies('avengers'); // Example query, modify as needed
   }
 
   fetchMovies(query: string) {
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching movies:', error);
-  
+
         // Handle specific error scenarios
         if (error.status === 0) {
           console.error('Network error: API is unreachable.');
@@ -61,12 +61,8 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  
+
   getSixMovies(movies: any[]): any[] {
-    const result = [];
-    for (let i = 0; i < Math.min(6, movies.length); i++) {
-      result.push(movies[i]);
-    }
-    return result;
+    return movies.slice(0, 6); // Simplified slicing logic
   }
 }
