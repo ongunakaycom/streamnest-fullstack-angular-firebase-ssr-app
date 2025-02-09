@@ -47,3 +47,6 @@ GoogleFlix/.firebase/hosting.ZGlzdFxnb29nbGUtZmxpeFxicm93c2Vy.cache
 .vscode/settings.json
 /.vscode
 /GoogleFlix/.firebase
+*.cache
+/GoogleFlix/.firebase
+GoogleFlix/.firebase/hosting.ZGlzdFxnb29nbGUtZmxpeFxicm93c2Vy.cache
