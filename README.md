@@ -1,53 +1,53 @@
-# StreamNest - Fullstack Angular Firebase SSR App
+# StreamNest - Fullstack Angular Firebase SSR App with Golang Backend
 
-StreamNest is a fullstack web application built with Angular featuring (SSR) and Firebase integration. This project demonstrates a production-ready setup combining Angular Universal, Express.js backend, Firebase hosting, and CI/CD pipelines to deliver a scalable, performant streaming platform.
+**StreamNest** is a fullstack web application combining Angular Universal for SSR, Firebase for authentication and hosting, and a powerful backend built in **Go (Golang)**. This architecture delivers a scalable, SEO-friendly streaming platform with modern DevOps CI/CD practices.
 
 ---
 
 ## 🚀 Project Overview
 
-- **Frontend:** Angular 17 with Angular Universal for SSR
-- **Backend:** Express.js server to serve Angular SSR and REST endpoints
-- **Authentication & Database:** Firebase (Firebase Auth, Firestore, Firebase Hosting)
+- **Frontend:** Angular 17 with Angular Universal (SSR)
+- **Backend:** **Golang REST API** deployed via Vercel
+- **Authentication & Hosting:** Firebase (Auth, Hosting, Firestore)
 - **Styling & UI:** Angular Material & Custom CSS
-- **Deployment:** Firebase Hosting & Cloud Functions
-- **CI/CD:** GitHub Actions workflows for build, test, and deploy automation
+- **Deployment:** Firebase Hosting (Frontend) + Vercel (Backend)
+- **CI/CD:** GitHub Actions for continuous integration and deployment
 
 ---
 
 ## 🛠️ Key Features
 
-- Angular SSR for SEO-friendly, fast initial loads
-- Firebase Authentication with Email/Password and Social providers
-- Firestore NoSQL database for scalable data management
-- Express server integration for SSR and REST APIs
-- Responsive UI with Angular Material components
-- Production-ready Firebase Hosting configuration
-- Automated GitHub Actions workflows for continuous integration and deployment
+- Server-side rendering (SSR) for SEO optimization and fast performance
+- Firebase Authentication (Email/Password and optional social providers)
+- Firestore NoSQL database integration
+- **Golang API** for movie search and streaming endpoints
+- Responsive UI built with Angular Material
+- Modern DevOps CI/CD pipeline via GitHub Actions
+- Split deployment: Angular SSR served on Firebase, backend API on Vercel
 
 ---
 
 ## ⚙️ DevOps & CI/CD Setup
 
-### 1. **GitHub Actions Workflows**
+### 1. GitHub Actions Workflows
 
 - **firebase-hosting-pull-request.yml**  
-  Runs tests and builds the Angular app on every pull request to ensure code quality.
+  Runs build and test steps on pull requests.
 
 - **firebase-hosting-merge.yml**  
-  Deploys the built app to Firebase Hosting on merges to the main branch.
+  Deploys Angular SSR app to Firebase Hosting on merge to `main`.
 
-### 2. **Build & Test Automation**
+### 2. Build & Test Automation
 
-- Angular app build with SSR enabled
-- Unit tests run with Karma and Jasmine
-- Linting enforced with ESLint
+- SSR-enabled Angular Universal build
+- Karma + Jasmine unit testing
+- Linting via ESLint
+- Optional: Backend tests via `go test`
 
-### 3. **Firebase Hosting & Functions Deployment**
+### 3. Deployment
 
-- Angular SSR app served via Express deployed as Firebase Cloud Function
-- Static assets hosted via Firebase Hosting
-- Environment configurations injected during build/deploy
+- **Frontend (Angular + SSR):** Firebase Hosting + Cloud Functions
+- **Backend (Go):** Hosted separately via [Vercel](https://vercel.com/) or other Go hosting providers
 
 ---
 
@@ -55,14 +55,15 @@ StreamNest is a fullstack web application built with Angular featuring (SSR) and
 
 ### Prerequisites
 
-- Node.js 18.x
+- Node.js 18+
 - Angular CLI
 - Firebase CLI
-- Firebase project configured with Hosting & Functions enabled
+- Golang 1.21+
+- Firebase project setup
 
 ### Setup
 
-```
+```bash
 git clone https://github.com/ongunakaycom/streamnest-fullstack-angular-firebase-ssr-app.git
 cd streamnest-fullstack-angular-firebase-ssr-app/GoogleFlix
 
@@ -72,41 +73,69 @@ firebase use --add  # select your Firebase project
 
 npm run build:ssr
 npm run serve:ssr:GoogleFlix
-Open http://localhost:4000 to view the app.
-```
+# App runs locally at: http://localhost:4000
+````
+
+---
 
 ## ⚡ Deployment
-```
+
+### Frontend (Firebase)
+
+```bash
 firebase deploy --only hosting,functions
-This will deploy the Angular SSR app along with any Firebase Functions and Hosting settings.
 ```
+
+### Backend (Golang)
+
+Deploy via [Vercel](https://vercel.com/) or your preferred Go host.
+
+> Example backend endpoint:
+> `https://google-flix-backend.vercel.app/api/movies?query=inception`
+
+---
 
 ## 🧪 Testing
-```
-Run unit tests with:
+
+```bash
+# Run Angular unit tests
 npm test
+
+# (Optional) Run Golang backend tests
+go test ./...
 ```
+
+---
 
 ## 📁 Project Structure Highlights
+
 ```
 /
-├── src/app/            # Angular app source code (components, services, modules)
-├── src/main.ts         # Angular client bootstrap
-├── src/main.server.ts  # Angular SSR bootstrap
-├── server.ts           # Express server to serve SSR and APIs
-├── firebase.json       # Firebase Hosting & Functions config
-├── angular.json        # Angular CLI config
-├── package.json        # Dependencies and scripts
+├── src/app/             # Angular application
+├── src/main.server.ts   # Angular SSR entry point
+├── server.ts            # Express SSR + routing
+├── firebase.json        # Firebase config
+├── angular.json         # Angular CLI config
+├── vercel.json          # (Optional) Backend deployment config
+├── go-backend/          # (Optional) Golang backend source
 ```
+
+---
+
 ## 🤝 Contributing
-Contributions and issues are welcome! Please open issues or pull requests on GitHub.
+
+Pull requests and issues are welcome! Let's build a better web together.
+
+---
 
 ## 📄 License
+
 This project is licensed under the [MIT License](./LICENSE) - see the LICENSE file for details.
 
-## 📬 Author 
+---
 
-Ongun Akay, a Senior Full-Stack Developer with expertise across various technologies.
+## 📬 Author
 
-About Me
+**Ongun Akay** is a Senior Full-Stack Developer with expertise across various technologies.
+
 👀 I specialize in full-stack development with extensive experience in frontend and backend technologies. 🌱 Currently, I'm sharpening my skills in advanced concepts of web development. 💞️ I’m always open to exciting collaborations and projects that challenge my abilities. 📫 You can reach me at info@ongunakay.com.
