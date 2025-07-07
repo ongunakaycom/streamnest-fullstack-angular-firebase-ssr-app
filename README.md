@@ -89,7 +89,7 @@ npm test
 
 ## 📁 Project Structure Highlights
 ```
-GoogleFlix/
+/
 ├── src/app/            # Angular app source code (components, services, modules)
 ├── src/main.ts         # Angular client bootstrap
 ├── src/main.server.ts  # Angular SSR bootstrap
