@@ -1,6 +1,6 @@
 # StreamNest - Fullstack Angular Firebase SSR App
 
-StreamNest is a fullstack web application built with Angular 17 featuring Server-Side Rendering (SSR) and Firebase integration. This project demonstrates a production-ready setup combining Angular Universal, Express.js backend, Firebase hosting, and CI/CD pipelines to deliver a scalable, performant streaming platform.
+StreamNest is a fullstack web application built with Angular featuring (SSR) and Firebase integration. This project demonstrates a production-ready setup combining Angular Universal, Express.js backend, Firebase hosting, and CI/CD pipelines to deliver a scalable, performant streaming platform.
 
 ---
 
@@ -102,7 +102,7 @@ GoogleFlix/
 Contributions and issues are welcome! Please open issues or pull requests on GitHub.
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](./LICENSE) - see the LICENSE file for details.
 
 ## 📬 Author 
 
