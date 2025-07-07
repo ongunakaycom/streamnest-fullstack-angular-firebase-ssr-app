@@ -63,7 +63,7 @@ StreamNest is a fullstack web application built with Angular featuring (SSR) and
 ### Setup
 
 ```
-git clone https://github.com/yourusername/streamnest-fullstack-angular-firebase-ssr-app.git
+git clone https://github.com/ongunakaycom/streamnest-fullstack-angular-firebase-ssr-app.git
 cd streamnest-fullstack-angular-firebase-ssr-app/GoogleFlix
 
 npm install
