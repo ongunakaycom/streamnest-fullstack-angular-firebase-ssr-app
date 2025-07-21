@@ -128,14 +128,17 @@ Pull requests and issues are welcome! Let's build a better web together.
 
 ---
 
-## 📄 License
+## About Me
 
-This project is licensed under the [MIT License](./LICENSE) - see the LICENSE file for details.
+I'm Ongun Akay, a Senior Full-Stack Developer with expertise across various technologies.
+
+- 👀 I specialize in full-stack development with extensive experience in frontend and backend technologies.
+- 🌱 Currently, I'm sharpening my skills in advanced concepts of web development.
+- 💞️ I’m always open to exciting collaborations and projects that challenge my abilities.
+- 📫 You can reach me at [info@ongunakay.com](mailto:info@ongunakay.com).
 
 ---
 
-## 📬 Author
+## 📄 License
 
-**Ongun Akay** is a Senior Full-Stack Developer with expertise across various technologies.
-
-👀 I specialize in full-stack development with extensive experience in frontend and backend technologies. 🌱 Currently, I'm sharpening my skills in advanced concepts of web development. 💞️ I’m always open to exciting collaborations and projects that challenge my abilities. 📫 You can reach me at info@ongunakay.com.
+This project is licensed under the [MIT License](./LICENSE) - see the LICENSE file for details.
