@@ -7,16 +7,26 @@
   <button mat-button>My List</button>
 </mat-toolbar>
 
-<div class="content-section" *ngFor="let section of sections">
-  <h2>{{ section.title }}</h2>
-  <div class="content-row">
-    <div class="content-item" *ngFor="let item of section.items">
-      <mat-card>
-        <img mat-card-image [src]="item.Poster || 'https://placehold.co/150x150'" alt="{{ item.Title }}">
-        <mat-card-content>
-          <p>{{ item.Plot }}</p>
-        </mat-card-content>
-      </mat-card>
+<div *ngIf="isLoading" class="spinner-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading && errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="!isLoading && !errorMessage">
+  <div class="content-section" *ngFor="let section of sections">
+    <h2>{{ section.title }}</h2>
+    <div class="content-row">
+      <div class="content-item" *ngFor="let item of section.items">
+        <mat-card>
+          <img mat-card-image [src]="item.Poster || 'https://placehold.co/150x150'" alt="{{ item.Title }}">
+          <mat-card-content>
+            <p>{{ item.Plot }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>

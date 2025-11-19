@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MovieService } from '../movie.service';
 
 @Component({
@@ -14,7 +15,8 @@ import { MovieService } from '../movie.service';
     MatButtonModule,
     MatCardModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -22,50 +24,40 @@ import { MovieService } from '../movie.service';
 })
 export class HomeComponent implements OnInit {
   sections: any[] = [
-    {
-      title: 'Popular on The Open Movie Database',
-      items: []
-    },
-    {
-      title: 'Trending Now',
-      items: []
-    }
+    { title: 'Popular on The Open Movie Database', items: [] },
+    { title: 'Trending Now', items: [] }
   ];
 
-  constructor(private movieService: MovieService) { }
+  isLoading = false;
+  errorMessage = '';
+
+  constructor(private movieService: MovieService) {}
 
   ngOnInit() {
-    this.fetchMovies('avengers'); // Example query, modify as needed
+    this.fetchMovies('avengers'); // Example query
   }
 
   fetchMovies(query: string) {
+    this.isLoading = true;
+    this.errorMessage = '';
+
     this.movieService.getMovies(query).subscribe({
       next: (movies: any) => {
         console.log('Movies fetched:', movies);
-        this.sections[0].items = this.getSixMovies(movies);
-        this.sections[1].items = this.getSixMovies(movies);
+        const results = movies.results || movies || [];
+        this.sections[0].items = this.getSixMovies(results);
+        this.sections[1].items = this.getSixMovies(results);
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error fetching movies:', error);
-        switch (error.status) {
-          case 0:
-            alert('Network error: Unable to reach the API.');
-            break;
-          case 404:
-            alert('No movies found for the given query.');
-            break;
-          case 500:
-            alert('Server error: Please try again later.');
-            break;
-          default:
-            alert('An unexpected error occurred.');
-        }
+        this.errorMessage = 'Failed to fetch movies. Please try again later.';
+        this.isLoading = false;
       }
     });
   }
-  
 
   getSixMovies(movies: any[]): any[] {
-    return movies.slice(0, 6); // Simplified slicing logic
+    return movies.slice(0, 6); // Take first 6 movies
   }
 }

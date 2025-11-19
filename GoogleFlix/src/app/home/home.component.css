@@ -9,9 +9,8 @@
 }
 
 .mat-card-title {
-  font-size: 14px
+  font-size: 14px;
 }
-
 
 .content-section {
   padding: 20px;
@@ -24,7 +23,7 @@
 }
 
 .content-item {
-  flex: 1 1 calc(16.66% - 10px); /* Flex layout for 6 items per row */
+  flex: 1 1 calc(16.66% - 10px);
   text-align: center;
 }
 
@@ -35,18 +34,31 @@
 
 @media (max-width: 1200px) {
   .content-item {
-    flex: 1 1 calc(33.33% - 10px); /* Flex layout for 3 items per row */
+    flex: 1 1 calc(33.33% - 10px);
   }
 }
 
 @media (max-width: 768px) {
   .content-item {
-    flex: 1 1 calc(50% - 10px); /* Flex layout for 2 items per row */
+    flex: 1 1 calc(50% - 10px);
   }
 }
 
 @media (max-width: 480px) {
   .content-item {
-    flex: 1 1 100%; /* Flex layout for 1 item per row */
+    flex: 1 1 100%;
   }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
 }
